@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Stock Prices Visualization</title>
+    <link rel="stylesheet" href="style.css">
+    <script type="text/javascript" src="canvasjs.min.js"></script>
+    <script type="text/javascript">
+        window.onload = function () {
+            fetch('/api/candles')
+                .then(response => response.json())
+                .then(candles => {
+                    let dataPoints = [];
+                    candles.forEach((candle, index) => {
+                        dataPoints.push({
+                            x: new Date(2023, 0, index), // Simulasi tanggal
+                            y: [candle.low, candle.high, candle.low + 10, candle.high - 10]
+                        });
+                    });
+
+                    var chart = new CanvasJS.Chart("chartContainer", {
+                        title: {
+                            text: "Stock Prices Visualization"
+                        },
+                        axisY: {
+                            title: "Prices",
+                            prefix: "$",
+                            includeZero: false
+                        },
+                        axisX: {
+                            interval: 1,
+                            intervalType: "day",
+                            valueFormatString: "DD MMM"
+                        },
+                        data: [{
+                            type: "candlestick",
+                            dataPoints: dataPoints
+                        }]
+                    });
+                    chart.render();
+                })
+                .catch(error => console.error("Error fetching data: ", error));
+        };
+    </script>
+</head>
+<body>
+    <h1 style="text-align: center;">Stock Prices Visualization</h1>
+    <div id="chartContainer"></div>
+    <footer style="text-align: center;">
+        Developed by Your Name © 2024
+    </footer>
+</body>
+</html>
