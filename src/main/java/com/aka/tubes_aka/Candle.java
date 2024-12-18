@@ -1,17 +1,17 @@
 package com.aka.tubes_aka;
 
 public class Candle {
-    private double low;
-    private double high;
-    private double open;
-    private double close;
+    public String tanggal;
+    public double low;
+    public double high;
+    public double open;
+    public double close;
 
     // Constructor
-    public Candle(double low, double high) {
+    public Candle(String tanggal, double low, double high) {
+        this.tanggal = tanggal;
         this.low = low;
         this.high = high;
-        this.open = open;
-        this.close = close;
     }
 
     // Getters

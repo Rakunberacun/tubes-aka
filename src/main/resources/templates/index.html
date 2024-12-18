@@ -12,7 +12,7 @@
                     let dataPoints = [];
                     candles.forEach((candle, index) => {
                         dataPoints.push({
-                            x: new Date(2023, 0, index), // Simulasi tanggal
+                            x: new Date(candle.tanggal), // Simulasi tanggal
                             y: [candle.low, candle.high, candle.low + 10, candle.high - 10]
                         });
                     });
@@ -29,7 +29,7 @@
                         axisX: {
                             interval: 1,
                             intervalType: "day",
-                            valueFormatString: "DD MMM"
+                            valueFormatString: "DD MMM YYYY"
                         },
                         data: [{
                             type: "candlestick",
